@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-
+import ReviewList from './reviewList';
 class Reviews extends Component {
 
 
@@ -8,7 +8,7 @@ class Reviews extends Component {
 
     return (
       <div className="Reviews">
-      <h5> Review Tab</h5>
+        <ReviewList reviews={this.props.reviews} />
       </div>
     );
   }

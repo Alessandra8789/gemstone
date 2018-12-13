@@ -9,7 +9,7 @@ class Description extends Component {
 
     return (
       <div className="Description">
-        <h5> Description Tab</h5>
+       <p>{this.props.description}</p>
       </div>
     );
   }

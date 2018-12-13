@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import ProductList from '../../components/productList';
-import Descriptin from './description';
+import Description from './description';
 import Reviews from './reviews';
 import Specs from './specs';
 import {Tab, TabList, Tabs, TabPanel} from 'react-tabs';
@@ -30,9 +30,9 @@ class PanelTabs extends Component {
             </Tab>
           </ul>
           </TabList>
-          <TabPanel></TabPanel>
-          <TabPanel></TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel><Description description={this.props.info.description }/></TabPanel>
+          <TabPanel><Reviews reviews={this.props.info.reviews} /></TabPanel>
+          <TabPanel><Specs /></TabPanel>
         </Tabs>
       </div>
     );
