@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className ="container">
-          <ProductList products={this.props.products} />
+          <ProductList products={this.props.products} addItem={this.props.addItem} />
         </div>
       </div>
     );

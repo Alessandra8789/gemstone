@@ -14,7 +14,7 @@ class ProductItem extends Component {
       </div>
       <div className="card-title">{this.props.info.name}</div>
       <div className="card-subtitle">${this.props.info.price}</div>
-      <button className="btn btn-primary"> Add to Cart</button>
+      <button className="btn btn-primary" onClick={() => this.props.addItem(this.props.info.id)}> Add to Cart</button>
       {/* add tabs here*/}
       <PanelTabs info={this.props.info}/>
 

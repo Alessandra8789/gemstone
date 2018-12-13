@@ -10,7 +10,7 @@ class ProductList extends Component {
         <div className="row">
         {this.props.products &&
          this.props.products.map(product =>
-            <ProductItem info={product} key={product.id} />
+            <ProductItem info={product} key={product.id} addItem={this.props.addItem} />
          )
 
         }
