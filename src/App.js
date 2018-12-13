@@ -4,14 +4,30 @@ import Home from './views/home';
 import Checkout from './views/checkout';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/navbar';
+import PRODUCTS from './static/data/products.js';
 
 class App extends Component {
+  constructor(){
+  super();
+  this.state = {
+    products: [],
+    cart: []
+  };
+}
+
+
+componentWillMount(){
+  this.setState({
+    products: PRODUCTS
+  });
+
+}
   render() {
     return (
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path='/' render={() => <Home />} />
+          <Route exact path='/' render={() => <Home products={this.state.products} />} />
           <Route exact path='/checkout' render={() => <Checkout />} />
         </Switch>
       </div>
