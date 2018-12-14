@@ -5,7 +5,7 @@ import Checkout from './views/checkout';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/navbar';
 import PRODUCTS from './static/data/products.js';
-
+import firebase from './firebase';
 
 class App extends Component {
   constructor() {
@@ -16,12 +16,33 @@ class App extends Component {
       cart: [],
       total: 0
     };
+
+    // push products to firebase
+    firebase.database().ref('products').set(PRODUCTS);
+    // push total to firebaseio
+    firebase.database().ref('total').set(0);
   }
 
 
   componentWillMount() {
-    this.setState({
-      products: PRODUCTS
+    // grab information stored on firebase, set state with all variables
+    const DB = firebase.database().ref();
+    DB.on('value', snapshot => {
+     let data = snapshot.val();
+
+     if (data.cart){
+       this.setState({
+         products:data.products,
+         cart:data.cart,
+         total:data.total
+       });
+
+     } else{
+       this.setState({
+         products: data.products,
+         total: data.total
+       });
+     }
     });
   }
 
@@ -49,6 +70,9 @@ class App extends Component {
 
     // console.log(this.state.cart);
     this.calcTotal();
+
+    // push cart up to firebasei
+    firebase.database().ref('cart').set(cart);
   }
 
 
@@ -71,6 +95,9 @@ class App extends Component {
     });
 
     this.calcTotal();
+
+    // push cart up to firebasei
+    firebase.database().ref('cart').set(items);
   }
 
 
@@ -93,6 +120,8 @@ class App extends Component {
     });
 
     // console.log(this.state.total);
+    /// push new cart to firebase
+    firebase.database().ref('total').set(total);
   }
 
 
